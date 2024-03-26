@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+     <title>
+       MANAGER DASHBOARD
+     </title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <header>
+      <h1> MANAGER DASHBOARD</h1>
+    </header>
+    <ul>
+      {% for category in categories %}
+      <li>{{ category.id }} - {{ category.name }}
+      <ul>
+        {% for prod in pr %}
+        {% if prod.category_id== category.id %}
+        <li>{{ prod.name }} - {{ prod.std_qty }} -{{ prod.scale }} - {{prod.price}} </li>
+        {% endif %}
+        {% endfor %}
+      </ul>
+      {% endfor %}
+      </li>
+    </ul>
+
+    
+
+    <form method="post" action="{{ url_for('add_category') }}">
+      <label for="category_name">Category Name:</label>
+      <input type="text" name="category_name" required>
+      <input type="submit" value="Add Category">
+    </form>
+
+    <form method="post" action="{{ url_for('add_product') }}">
+      <label for="product_name">Product Name:</label>
+      <input type="text" name="product_name" required>
+
+      <label for="product_scale">Product Scale:</label>
+      <input type="text" name="product_scale" required>
+
+      <label for="product_qty">Product Standard Quantity:</label>
+      <input type="number" name="product_qty" required>
+
+      <label for="product_price">Product Price:</label>
+      <input type="number" name="product_price" required>
+
+      <label for="product_stock">Product Stock:</label>
+      <input type="number" name="product_stock" required>
+
+      <label for="product_cat_id">Product Category Id:</label>
+      <input type="number" name="product_cat_id" required>
+      
+      <input type="submit" value="Add Product">
+    </form>
+
+    <form method="post" action="{{ url_for('delete_category') }}">
+      <label for="category_id">Category Id:</label>
+      <input type="text" name="category_id" required>
+      <input type="submit" value="Delete Category">
+    </form>
+
+    <form method="post" action="{{ url_for('delete_product') }}">
+      <label for="product_id">Product Id:</label>
+      <input type="number" name="product_id" required>
+      <input type="submit" value="Delete Product">
+    </form>
+
+
+  </body>
+  
+</html>

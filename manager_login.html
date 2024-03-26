@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+     <title>
+       MANAGER LOGIN PAGE
+     </title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <header>
+      <h1> MANAGER LOGIN</h1>
+    </header>
+    <main>
+      <form action="{{ url_for('manager_dashboard') }}" method="POST">
+        <label for="managername">Manager name:</label>
+        <input type="text" id="managername" name="managername" required><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        <input type="submit" value="Login">
+      </form>
+    </main>
+  </body>
+  
+</html>

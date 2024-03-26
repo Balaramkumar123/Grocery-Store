@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <title>CART</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header>
+    <h1>CART</h1>
+  </header>
+  <ul>
+    {% for product in selected_products %}
+      <li>
+        {{ product.name }} - Quantity: {{ product.req_qty }}  x  {{product.std_qty}} {{ product.scale }} - Price per Standard Quantity: {{ product.price }} - Subtotal: {{ product.subtotal }}
+      </li>
+    {% endfor %}
+  </ul>
+  <p>Total Cost: {{ total_cost }}</p>
+  <p> Thank You for Shopping!</p>
+</body>
+</html>

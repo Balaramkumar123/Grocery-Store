@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>USER DASHBOARD WITH FORMS</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>USER DASHBOARD WITH FORMS</h1>
+        <h2> AVAILABLE PRODUCTS</h2>
+    </header>
+    <ul>
+        {% for category in categories %}
+        {% for prod in pr %}
+          {% if category.id==prod.category_id %}
+            <li> CATEGORY ID: {{ category.id }} - {{category.name}} - PRODUCT ID: {{prod.id}} - {{ prod.name }}- {{ prod.std_qty }} {{ prod.scale }} - Rs.{{ prod.price }}</li>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+      </ul>
+
+
+    {% if num_products|to_int > 0 %}
+    <form method="post" action="{{ url_for('cart') }}">
+        <div>
+            <label for="no:of:products"> No: of products</label>
+            <input type="number" name="no:of:products" required>
+        </div>
+        {% for i in range(num_products|int) %}
+        <div>
+            <label for="product_id{{ i }}">Product Id:</label>
+            <input type="number" name="product_id{{ i }}" required>
+
+            <label for="required_qty{{ i }}">Required Quantity:</label>
+            <input type="number" name="required_qty{{ i }}" required>
+        </div>
+        {% endfor %}
+        <input type="submit" value="Finish">
+    </form>
+    {% endif %}
+
+</body>
+</html>

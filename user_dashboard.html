@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+     <title>
+       USER DASHBOARD
+     </title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+  </head>
+  <body>
+    <header>
+      <h1> USER DASHBOARD</h1>
+      <h2> AVAILABLE PRODUCTS </h2>
+    </header>
+    
+    <ul>
+      {% for category in categories %}
+        {% for prod in pr %}
+          {% if category.id==prod.category_id %}
+            <li> CATEGORY ID: {{ category.id }} - {{category.name}} - PRODUCT ID: {{prod.id}} - {{ prod.name }}- {{ prod.std_qty }} {{ prod.scale }} - Rs.{{ prod.price }}</li>
+          {% endif %}
+        {% endfor %}
+      {% endfor %}
+    </ul>
+
+    <form method="post" action="{{ url_for('user_dashboard_with_forms') }}">
+      <label for="num_products">Number of Products:</label>
+      <input type="number" name="num_products" required>
+      <input type="submit" value="Submit">
+    </form>
+    
+  </body>
+</html>
